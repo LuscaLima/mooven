@@ -1,0 +1,33 @@
+@import "../style/scss/layout";
+@import "../style/scss/colors";
+@import "../style/scss/media_queries";
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  line-height: 1.5;
+  color: $text;
+  font-family: $main-font, $fallback-font;
+  background-color: $background;
+}
+
+input,
+textarea,
+button {
+  font: 400 16px $main-font, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}

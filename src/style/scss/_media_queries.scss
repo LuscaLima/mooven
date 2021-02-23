@@ -1,0 +1,13 @@
+// Media queries for only screen
+
+@media only screen and (max-widht: 1080px) {
+  html {
+    font-size: 93.75%; // 16 * 0.9375 = 15 - decreases 1px across all elements of the application
+  }
+}
+
+@media only screen and (max-widht: 720px) {
+  html {
+    font-size: 87.5%; // 16 * 0.875 = 14 - decreases 2px across all elements of the application
+  }
+}
