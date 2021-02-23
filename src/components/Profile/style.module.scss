@@ -1,0 +1,33 @@
+@import "../../style/scss/colors";
+
+.profile {
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  .photo {
+    border-radius: 50%;
+    width: 5.5rem;
+  }
+
+  .description {
+    margin-left: 1.5rem;
+
+    .name {
+      margin-bottom: 0;
+      color: $title;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .level {
+      margin-top: 0.4rem;
+      font-size: 1rem;
+
+      img {
+        margin-right: 0.5rem;
+        margin-bottom: -0.15rem;
+      }
+    }
+  }
+}
