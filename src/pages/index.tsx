@@ -1,23 +1,31 @@
 // Components
+import Head from "next/head";
 import ExperienceBar from "../components/ExperienceBar";
 import Container from "../components/Container";
 import Profile from "../components/Profile";
+import CompleteChallenges from "../components/CompleteChallenges";
+import Countdown from "../components/Countdown";
 
 // Style
 import style from "../style/scss/pages/home.style.module.scss";
-import CompleteChallenges from "../components/CompleteChallenges";
 
 export default function Home() {
   return (
-    <Container>
-      <ExperienceBar />
-      <section className={style.home}>
-        <div className={style.leftContainer}>
-          <Profile />
-          <CompleteChallenges />
-        </div>
-        <div className={style.rightContainer}></div>
-      </section>
-    </Container>
+    <>
+      <Head>
+        <title>Início | Moventur</title>
+      </Head>
+      <Container>
+        <ExperienceBar />
+        <section className={style.home}>
+          <div className={style.leftContainer}>
+            <Profile />
+            <CompleteChallenges />
+            <Countdown />
+          </div>
+          <div className={style.rightContainer}></div>
+        </section>
+      </Container>
+    </>
   );
 }
