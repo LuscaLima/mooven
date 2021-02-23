@@ -23,7 +23,7 @@
       position: relative;
       height: 100%;
       border-radius: $progress-height;
-      background-color: $green;
+      background: linear-gradient(to right, darken($orange, 10), $orange);
 
       .current {
         position: absolute;
