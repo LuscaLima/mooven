@@ -48,9 +48,33 @@
   border: none;
   border-radius: 0.25rem;
   background-color: $orange;
-  transition: background-color 0.2s linear;
+  transition: background-color 0.2s linear, color 0.2s linear;
 
   &:hover {
     background-color: darken($orange, 10);
+  }
+
+  &:disabled {
+    color: $title;
+    background-color: $white;
+    border-bottom: 4px solid $orange;
+    cursor: not-allowed;
+  }
+
+  &.abandon {
+    color: $title;
+    background-color: $white;
+
+    span {
+      margin-top: -0.25rem;
+      margin-left: 0.5rem;
+      font-size: 2rem;
+      font-weight: normal;
+    }
+
+    &:hover {
+      background-color: $red;
+      color: $white;
+    }
   }
 }

@@ -1,20 +1,21 @@
-// Style
 import { useEffect, useState } from "react";
+
+// Style
 import style from "./style.module.scss";
 
 // Makes the object unmodifiable
 const METRICS = Object.freeze({
-  defaultMinutes: 25,
+  // defaultTime: 25 * 60,
+  defaultTime: 0.1 * 60,
   secondsPerMinute: 60,
   initialActive: false,
-  oneSecond: 1000,
+  initialFinished: false,
 });
 
 export default function Countdown() {
-  const [time, setTime] = useState(
-    METRICS.defaultMinutes * METRICS.secondsPerMinute
-  );
-  const [active, setActive] = useState(METRICS.initialActive);
+  const [time, setTime] = useState(METRICS.defaultTime);
+  const [isActive, setIsActive] = useState(METRICS.initialActive);
+  const [hasFinished, setHasFinished] = useState(METRICS.initialFinished);
 
   const minutes = Math.floor(time / METRICS.secondsPerMinute);
   const seconds = time % METRICS.secondsPerMinute;
@@ -22,32 +23,44 @@ export default function Countdown() {
   const [minLeft, minRight] = minutes.toString().padStart(2, "0").split("");
   const [secLeft, secRight] = seconds.toString().padStart(2, "0").split("");
 
+  let timeout: NodeJS.Timeout;
+
   // Start the countdown
   function start() {
-    setActive(true);
+    setIsActive(true);
   }
 
   // Update the countdown
   function update() {
     setTime(time - 1);
-    localStorage.setItem("currentTime", time.toString());
+  }
+
+  // Reset the countdown
+  function reset() {
+    clearTimeout(timeout);
+    setIsActive(METRICS.initialActive);
+    setTime(METRICS.defaultTime);
   }
 
   // Collateral effects
   useEffect(() => {
-    const initialTime = parseInt(localStorage.getItem("currentTime"));
+    const currentTime = parseInt(localStorage.getItem("currentTime"));
+    const isActive = localStorage.getItem("isActive") === "true";
 
-    if (initialTime) {
-      setTime(initialTime - 2);
+    if (currentTime && isActive) {
+      setTime(currentTime - 1);
       start();
     }
   }, []);
 
   useEffect(() => {
-    if (active && time > 0) {
-      setTimeout(update, METRICS.oneSecond);
+    if (isActive && time > 0) {
+      timeout = setTimeout(update, 1000);
+    } else if (isActive && time === 0) {
+      setHasFinished(true);
+      setIsActive(false);
     }
-  }, [active, time]);
+  }, [isActive, time]);
 
   return (
     <>
@@ -62,9 +75,23 @@ export default function Countdown() {
           <span>{secRight}</span>
         </div>
       </div>
-      <button type="button" className={style.countdownButton} onClick={start}>
-        Iniciar um ciclo
-      </button>
+      {isActive ? (
+        <button
+          type="button"
+          className={`${style.countdownButton} ${style.abandon}`}
+          onClick={reset}
+        >
+          Abandonar ciclo <span>&times;</span>
+        </button>
+      ) : hasFinished ? (
+        <button disabled className={style.countdownButton}>
+          Ciclo encerrado
+        </button>
+      ) : (
+        <button type="button" className={style.countdownButton} onClick={start}>
+          Iniciar ciclo
+        </button>
+      )}
     </>
   );
 }
