@@ -1,12 +1,8 @@
 .home {
   flex: 1;
   display: grid;
+  align-content: center;
   grid-template-columns: 1fr 1fr;
   gap: 6.25rem;
-  align-content: center;
-
-  .leftContainer,
-  .rightContainer {
-    flex-basis: 50%;
-  }
+  margin-top: 2rem;
 }

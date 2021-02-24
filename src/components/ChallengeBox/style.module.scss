@@ -1,0 +1,106 @@
+@import "../../style/scss/colors";
+
+.challengeBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 1.5rem 2rem;
+  text-align: center;
+  border-radius: 0.25rem;
+  background-color: $white;
+  box-shadow: 0 0 1rem rgba(#000, 0.05);
+
+  .active {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    header {
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      color: $blue;
+      font-size: 1.5rem;
+      border-bottom: 1px solid $gray-line;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+
+      img {
+        height: 8rem;
+        margin-bottom: 2rem;
+      }
+
+      strong {
+        color: $title;
+        font-size: 2rem;
+      }
+    }
+
+    footer {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+
+      button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 3rem;
+        font-size: 1rem;
+        font-weight: 600;
+        color: $white;
+        border: none;
+        border-radius: 0.25rem;
+        background-color: $white;
+        transition: background-color 0.2s linear, color 0.2s linear;
+
+        &.failButton {
+          background-color: $red;
+
+          &:hover {
+            color: $white;
+            background-color: darken($red, 10);
+          }
+        }
+
+        &.completeButton {
+          background-color: $green;
+
+          &:hover {
+            color: $white;
+            background-color: darken($green, 10);
+          }
+        }
+      }
+    }
+  }
+
+  .notActive {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    strong {
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+
+    p {
+      display: flex;
+      width: 80%;
+      margin: 0 auto;
+      margin-top: 2rem;
+      text-align: left;
+
+      img {
+        height: 3rem;
+        margin-right: 1rem;
+      }
+    }
+  }
+}

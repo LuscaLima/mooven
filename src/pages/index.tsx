@@ -8,6 +8,7 @@ import Countdown from "../components/Countdown";
 
 // Style
 import style from "../style/scss/pages/home.style.module.scss";
+import ChallengeBox from "../components/ChallengeBox";
 
 export default function Home() {
   return (
@@ -23,7 +24,9 @@ export default function Home() {
             <CompleteChallenges />
             <Countdown />
           </div>
-          <div className={style.rightContainer}></div>
+          <div className={style.rightContainer}>
+            <ChallengeBox />
+          </div>
         </section>
       </Container>
     </>
