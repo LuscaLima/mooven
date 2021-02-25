@@ -23,6 +23,7 @@ interface IChallengeContext {
   startNewChallenge: () => void
   activeChallenge: IChallenge
   resetChallenge: () => void
+  completeChallenge: () => void
 }
 
 export const ChallengeContext = createContext({} as IChallengeContext)
@@ -51,6 +52,26 @@ export default function ChallengesProvider({
     setActiveChallenge(challenge)
   }
 
+  // Complete a challenge
+  function completeChallenge() {
+    if (!activeChallenge) {
+      return
+    }
+
+    const { amount } = activeChallenge as IChallenge
+
+    let finalExperience = currentExperience + amount
+
+    if (finalExperience >= experienceToNextLevel) {
+      levelUp()
+      finalExperience -= experienceToNextLevel
+    }
+
+    setCurrentExperience(finalExperience)
+    setActiveChallenge(null)
+    setCompletedChallenges(completedChallenges + 1)
+  }
+
   // Reset the challenge
   function resetChallenge() {
     setActiveChallenge(null)
@@ -67,6 +88,7 @@ export default function ChallengesProvider({
         startNewChallenge,
         activeChallenge,
         resetChallenge,
+        completeChallenge,
       }}
     >
       {children}
