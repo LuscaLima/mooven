@@ -24,15 +24,37 @@
       height: 100%;
       border-radius: $progress-height;
       background: linear-gradient(to right, darken($orange, 10), $orange);
+      transition: all 0.2s linear;
 
       .current {
         position: absolute;
-        bottom: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         right: 0;
-        width: 35px;
+        bottom: calc(100% + 10px);
+        white-space: nowrap;
+        padding: 0.2rem 0.4rem;
+        font-size: 0.9rem;
         text-align: center;
+        border-radius: 0.25rem;
+        background-color: $white;
+        box-shadow: 0 0 0.5rem rgba(#000, 0.1);
         transform: translateX(50%);
         z-index: 1;
+
+        &::after {
+          content: '';
+          position: absolute;
+          display: block;
+          bottom: 0;
+          left: 50%;
+          width: 10px;
+          height: 10px;
+          border-radius: 0.2rem;
+          background-color: inherit;
+          transform: translate(-50%, 40%) rotateZ(45deg);
+        }
       }
     }
   }
