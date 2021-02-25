@@ -31,11 +31,7 @@ export default function ChallengeBox() {
               />
             )}
             <strong>Exercite-se</strong>
-            <p>
-              {/* É agora Lucas, bora lá meu parça.
-              <br /> */}
-              {activeChallenge.description}
-            </p>
+            <p>{activeChallenge.description}</p>
           </main>
           <footer>
             <button
