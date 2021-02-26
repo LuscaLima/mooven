@@ -3,6 +3,9 @@ import Cookie from 'js-cookie'
 
 import challenges from '../../challenges/index.json'
 
+// Components
+import LevelUpModal from '../components/LevelUpModal'
+
 // Props definition
 type ChallengesProviderProps = {
   children: ReactNode
@@ -28,6 +31,7 @@ interface IChallengeContext {
   activeChallenge: IChallenge
   resetChallenge: () => void
   completeChallenge: () => void
+  closeModalLevel: () => void
 }
 
 export const ChallengeContext = createContext({} as IChallengeContext)
@@ -44,6 +48,7 @@ export default function ChallengesProvider({
     rest.completedChallenges ?? 0
   )
   const [activeChallenge, setActiveChallenge] = useState(null)
+  const [isModalLevelOpen, setIsModalLevelOpen] = useState(false)
 
   // Collateral effects
   useEffect(() => {
@@ -62,6 +67,12 @@ export default function ChallengesProvider({
   // Increases the level
   function levelUp() {
     setLevel(level + 1)
+    setIsModalLevelOpen(true)
+  }
+
+  // Close the level modal
+  function closeModalLevel() {
+    setIsModalLevelOpen(false)
   }
 
   // Starts a new challenge
@@ -122,9 +133,12 @@ export default function ChallengesProvider({
         activeChallenge,
         resetChallenge,
         completeChallenge,
+        closeModalLevel,
       }}
     >
       {children}
+
+      {isModalLevelOpen && <LevelUpModal />}
     </ChallengeContext.Provider>
   )
 }

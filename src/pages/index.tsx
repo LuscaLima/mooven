@@ -26,6 +26,7 @@ export default function Home(props: HomeProps) {
       <Head>
         <title>Início | Moventur</title>
       </Head>
+
       <Container>
         <ExperienceBar />
         <section className={style.home}>
