@@ -1,0 +1,67 @@
+@import '../../style/scss/colors';
+
+.levelUpModal {
+  position: fixed;
+  display: flex;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(#000, 0.1);
+  overflow: hidden;
+  z-index: 999;
+
+  .content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    width: 425px;
+    padding: 2rem 3rem;
+    text-align: center;
+    border-radius: 0.25rem;
+    background-color: $white;
+    box-shadow: 0 0 1rem rgba(#000, 0.05);
+
+    .close {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      top: 1rem;
+      right: 1rem;
+      width: 40px;
+      height: 40px;
+      color: $text;
+      font-size: 2rem;
+      border: none;
+      border-radius: 100%;
+      background-color: transparent;
+
+      &:hover {
+        background-color: rgba(#000, 0.05);
+      }
+    }
+
+    header {
+      font-size: 8.75rem;
+      font-weight: 600;
+      color: $orange;
+
+      background: url(/icons/levelUp.svg) no-repeat;
+      background-size: contain;
+    }
+
+    strong {
+      color: $title;
+      font-size: 2.25rem;
+    }
+
+    p {
+      margin-top: 0.25rem;
+      color: $text;
+      font-size: 1.25rem;
+    }
+  }
+}
