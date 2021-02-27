@@ -1,4 +1,4 @@
-# 🏃‍♂️ Moventur
+<h1 align="center">mooven</h1>
 
 **A React and Next.js project based on the Pomodoro method that helps focused people to exercise.**
 
